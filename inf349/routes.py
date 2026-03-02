@@ -157,7 +157,13 @@ def get_order(order_id):
             "total_price": order.total_price,
             "total_price_tax": order.total_price_tax,
             "email": order.email,
-            "shipping_information": {},
+            "shipping_information": {
+                "country": order.ship_country,
+                "address": order.ship_address,
+                "postal_code": order.ship_postal_code,
+                "city": order.ship_city,
+                "province": order.ship_province,
+            } if order.ship_country else {},
             "credit_card": {},
             "paid": order.paid,
             "transaction": {},
@@ -236,7 +242,7 @@ def update_order(order_id):
 
     # total_price_tax = total_price * (1 + taxe)
     rate = TAX_RATES[province]
-    order.total_price_tax = float(order.total_price) * (1.0 + rate)
+    order.total_price_tax = int(round(order.total_price * (1 + rate)))
 
     order.email = email
     order.ship_country = shipping["country"]
