@@ -253,7 +253,7 @@ def update_order(order_id):
 
         cc = data["credit_card"]
 
-        amount = order.total_price + order.shipping_price
+        amount = (order.total_price_tax or order.total_price) + order.shipping_price
 
         payload = json.dumps({
             "credit_card": cc,
