@@ -8,7 +8,8 @@ from .models import Product, Order
 api = Blueprint("api", __name__)
 
 # --- GET / : liste produits ---
-PAY_URL = "http://dimensweb.uqac.ca/~jgnault/shops/pay/"
+#HTTPS car le serveur refuse les requêtes non sécurisées pour le paiement
+PAY_URL = "https://dimensweb.uqac.ca/~jgnault/shops/pay/"
 
 TAX_RATES = {
     "QC": 0.15,
